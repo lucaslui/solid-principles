@@ -1,14 +1,12 @@
-import { v4 as uuidv4 } from "uuid";
-
 export abstract class DebitAccount {
-  private transactionNumber: string;
+  private _transactionNumber: string;
 
-  getTransactionNumber(): string {
-    return this.transactionNumber;
+  get transactionNumber(): string {
+    return this._transactionNumber;
   }
 
-  setTransactionNumber(): void {
-    this.transactionNumber = uuidv4();
+  set transactionNumber(value: string) {
+    this._transactionNumber = value;
   }
 
   abstract debit(value: number, account: string): string;
