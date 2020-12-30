@@ -9,7 +9,13 @@
   "author": "Lucas Lui Motta",
   "license": "GPL-3.0",
   "devDependencies": {
+    "@types/nodemailer": "^6.4.0",
+    "@types/pg": "^7.14.7",
     "sucrase": "^3.16.0",
     "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "nodemailer": "^6.4.17",
+    "pg": "^8.5.1"
   }
 }
