@@ -12,8 +12,8 @@
 //   .then((res) => console.log(res))
 //   .catch((error) => console.log(error));
 
-import { User } from "./src/SRP/solution/user";
-import { UserService } from "./src/SRP/solution/user-service";
+import { User } from "./src/1-SRP/solution/user";
+import { UserService } from "./src/1-SRP/solution/user-service";
 
 const user = new User(
   "Lucas",
