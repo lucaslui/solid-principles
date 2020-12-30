@@ -112,4 +112,40 @@
 
 /*=========================== ISP violation ===========================*/
 
+// import { ProductRegister } from "./src/4-ISP/violation/produt-register";
+// import { UserRegister } from "./src/4-ISP/violation/user-register";
+
+// const userRegister = new UserRegister()
+
+// if(userRegister.dataValid()) {
+//   userRegister.save()
+//   userRegister.sendEmail()
+// }
+
+// const productRegister = new ProductRegister()
+
+// if(productRegister.dataValid()){
+//   productRegister.save()
+//   productRegister.sendEmail()
+// }
+
+/*=========================== ISP solution ===========================*/
+
+import { ProductRegister } from "./src/4-ISP/solution/produt-register";
+import { UserRegister } from "./src/4-ISP/solution/user-register";
+
+const userRegister = new UserRegister()
+
+if(userRegister.dataValid()) {
+  userRegister.save()
+  userRegister.sendEmail()
+}
+
+const productRegister = new ProductRegister()
+
+if(productRegister.dataValid()){
+  productRegister.save()
+}
+
+
 
