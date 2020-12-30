@@ -10,12 +10,12 @@ export class User {
   ) {}
 
   async save(): Promise<bigint | null> {
-    let id: bigint | null = null;
+    let eitherIdOrNull: bigint | null = null;
 
     /* Validate user data */
-    if (!this.email.includes("@")) return id;
+    if (!this.email.includes("@")) return null;
 
-    if (this.cpf.length !== 14) return id;
+    if (this.cpf.length !== 14) return null;
 
     /* Adding user to repository */
     const connectionString =
@@ -30,7 +30,7 @@ export class User {
       const queryValues = [this.name, this.email, this.cpf, this.dateCreation];
       const result = await client.query(queryText, queryValues);
       await client.query("COMMIT");
-      if (result.rows[0]) id = BigInt(result.rows[0].id);
+      if (result.rows[0]) eitherIdOrNull = BigInt(result.rows[0].id);
     } catch (error) {
       await client.query("ROLLBACK");
       throw error;
@@ -67,6 +67,6 @@ export class User {
       throw error;
     }
 
-    return id;
+    return eitherIdOrNull;
   }
 }
