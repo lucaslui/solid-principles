@@ -1,6 +1,6 @@
 /*=========================== SRP violation ===========================*/
 
-// import { User } from "./src/SRP/violation/user";
+// import { User } from "./src/1-SRP/violation/user";
 
 // const user = new User(
 //   "Lucas",
@@ -131,21 +131,63 @@
 
 /*=========================== ISP solution ===========================*/
 
-import { ProductRegister } from "./src/4-ISP/solution/produt-register";
-import { UserRegister } from "./src/4-ISP/solution/user-register";
+// import { ProductRegister } from "./src/4-ISP/solution/produt-register";
+// import { UserRegister } from "./src/4-ISP/solution/user-register";
 
-const userRegister = new UserRegister()
+// const userRegister = new UserRegister()
 
-if(userRegister.dataValid()) {
-  userRegister.save()
-  userRegister.sendEmail()
-}
+// if(userRegister.dataValid()) {
+//   userRegister.save()
+//   userRegister.sendEmail()
+// }
 
-const productRegister = new ProductRegister()
+// const productRegister = new ProductRegister()
 
-if(productRegister.dataValid()){
-  productRegister.save()
-}
+// if(productRegister.dataValid()){
+//   productRegister.save()
+// }
 
+/*=========================== DIP violation ===========================*/
 
+// import { User } from "./src/5-DIP/violation/user";
+// import { UserService } from "./src/5-DIP/violation/user-service";
 
+// const user = new User(
+//   "Lucas",
+//   "lucasluimotta@gmail.com",
+//   "231.313.122-33",
+//   new Date()
+// );
+
+// const userService = new UserService();
+
+// userService
+//   .save(user)
+//   .then((res) => console.log(res))
+//   .catch((error) => console.log(error));
+
+/*=========================== DIP solution ===========================*/
+
+import { CPFServices } from "./src/5-DIP/solution/cpf-services";
+import { EmailServices } from "./src/5-DIP/solution/email-services";
+import { PostgresAdapter } from "./src/5-DIP/solution/postgres-adapter";
+import { User } from "./src/5-DIP/solution/user";
+import { UserService } from "./src/5-DIP/solution/user-service";
+
+const emailServices = new EmailServices();
+const cpfServices = new CPFServices();
+
+const user = new User(emailServices, cpfServices);
+
+user.name = "Lucas";
+user.email = "lucasluimotta@gmail.com";
+user.cpf = "231.313.122-33";
+user.dateCreation = new Date();
+
+const postgresAdapter = new PostgresAdapter();
+const userService = new UserService(postgresAdapter, emailServices);
+
+userService
+  .save(user)
+  .then((res) => console.log(res))
+  .catch((error) => console.log(error));
